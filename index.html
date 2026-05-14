@@ -70,7 +70,50 @@
     </div>
   </div>
 
-  <p class="footer">Generated on 2026-05-12 | ComfyUI + RTX 4060 8GB</p>
+  <hr style="border:none; border-top:1px solid #30363d; max-width:1200px; margin:50px auto 40px;">
+
+  <h1 style="margin-bottom:8px;">Photorealistic Series</h1>
+  <p class="subtitle">DPM++ 2M Karras | 30 steps | CFG 7.5</p>
+
+  <div class="section">
+    <h2>SD 1.5 — Photorealistic</h2>
+    <p class="info">512 x 768 px — ~4.5s per image</p>
+    <div class="grid">
+      <div class="card">
+        <img src="photo_sd15_cafe.png" onclick="openLB(this)" alt="SD1.5 cafe portrait">
+        <div class="label">Cafe Portrait — Canon EOS R5, 85mm f/1.4, Kodak Portra 400</div>
+      </div>
+      <div class="card">
+        <img src="photo_sd15_tokyo.png" onclick="openLB(this)" alt="SD1.5 Tokyo night">
+        <div class="label">Tokyo Rain — Leica M11, 35mm, cinematic</div>
+      </div>
+      <div class="card">
+        <img src="photo_sd15_coffee.png" onclick="openLB(this)" alt="SD1.5 coffee hands">
+        <div class="label">Coffee Hands — Fujifilm X-T5, 56mm f/1.2, macro</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>SDXL — Photorealistic</h2>
+    <p class="info">832 x 1216 px — ~17.5s per image</p>
+    <div class="grid">
+      <div class="card">
+        <img src="photo_sdxl_cafe.png" onclick="openLB(this)" alt="SDXL cafe portrait">
+        <div class="label">Cafe Portrait — Canon EOS R5, 85mm f/1.4, Kodak Portra 400</div>
+      </div>
+      <div class="card">
+        <img src="photo_sdxl_tokyo.png" onclick="openLB(this)" alt="SDXL Tokyo night">
+        <div class="label">Tokyo Rain — Leica M11, 35mm, cinematic</div>
+      </div>
+      <div class="card">
+        <img src="photo_sdxl_coffee.png" onclick="openLB(this)" alt="SDXL coffee hands">
+        <div class="label">Coffee Hands — Fujifilm X-T5, 56mm f/1.2, macro</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer">Generated on 2026-05-14 | ComfyUI + RTX 4060 8GB</p>
 
   <div class="lightbox" id="lb" onclick="closeLB()">
     <img id="lb-img" src="" alt="fullsize">
