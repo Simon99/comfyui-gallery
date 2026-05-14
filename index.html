@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComfyUI Benchmark Gallery — RTX 4060</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+           background: #0d1117; color: #e6edf3; padding: 40px 20px; }
+    h1 { text-align: center; font-size: 2em; margin-bottom: 8px; }
+    .subtitle { text-align: center; color: #8b949e; margin-bottom: 40px; font-size: 1.1em; }
+    .specs { text-align: center; color: #58a6ff; margin-bottom: 30px; font-size: 0.95em; }
+    .section { max-width: 1200px; margin: 0 auto 50px; }
+    .section h2 { font-size: 1.4em; margin-bottom: 6px; color: #58a6ff; }
+    .section .info { color: #8b949e; margin-bottom: 16px; font-size: 0.95em; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; }
+    .card img { width: 100%; display: block; cursor: pointer; transition: transform 0.2s; }
+    .card img:hover { transform: scale(1.02); }
+    .card .label { padding: 12px 16px; font-size: 0.9em; color: #8b949e; }
+    table { margin: 30px auto; border-collapse: collapse; font-size: 1em; }
+    th, td { padding: 10px 24px; border: 1px solid #30363d; text-align: center; }
+    th { background: #161b22; color: #58a6ff; }
+    td { color: #e6edf3; }
+    .prompt { max-width: 800px; margin: 0 auto 40px; background: #161b22; border: 1px solid #30363d;
+              border-radius: 8px; padding: 16px 20px; font-family: monospace; font-size: 0.9em; color: #7ee787; }
+    .footer { text-align: center; color: #484f58; margin-top: 50px; font-size: 0.85em; }
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 100;
+                align-items: center; justify-content: center; cursor: zoom-out; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 95vw; max-height: 95vh; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>ComfyUI Benchmark Gallery</h1>
+  <p class="subtitle">RTX 4060 8GB — Image Generation Speed Test</p>
+  <p class="specs">GPU: NVIDIA RTX 4060 8GB | CUDA 13.1 | PyTorch 2.11 | ComfyUI 0.21.0</p>
+
+  <div class="prompt">
+    <strong>Prompt:</strong> "a beautiful mountain landscape at sunset, photorealistic, 8k, detailed"<br>
+    <strong>Negative:</strong> "ugly, blurry, low quality"<br>
+    <strong>Sampler:</strong> euler_ancestral | <strong>CFG:</strong> 7.0 | <strong>Steps:</strong> 20
+  </div>
+
+  <table>
+    <tr><th>Model</th><th>Resolution</th><th>Steps</th><th>Cold Start</th><th>Warm Run</th></tr>
+    <tr><td>SD 1.5</td><td>512 x 512</td><td>20</td><td>3.01s</td><td><strong>2.51s</strong></td></tr>
+    <tr><td>SDXL 1.0</td><td>1024 x 1024</td><td>20</td><td>13.06s</td><td><strong>12.33s</strong></td></tr>
+  </table>
+
+  <div class="section">
+    <h2>Stable Diffusion 1.5</h2>
+    <p class="info">512 x 512 px — ~2.5s per image (warm)</p>
+    <div class="grid">
+      <div class="card"><img src="sd15_1.png" onclick="openLB(this)" alt="SD1.5 seed 42"><div class="label">Seed 42</div></div>
+      <div class="card"><img src="sd15_2.png" onclick="openLB(this)" alt="SD1.5 seed 100"><div class="label">Seed 100</div></div>
+      <div class="card"><img src="sd15_3.png" onclick="openLB(this)" alt="SD1.5 seed 101"><div class="label">Seed 101</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Stable Diffusion XL 1.0</h2>
+    <p class="info">1024 x 1024 px — ~12.3s per image (warm)</p>
+    <div class="grid">
+      <div class="card"><img src="sdxl_1.png" onclick="openLB(this)" alt="SDXL seed 42"><div class="label">Seed 42</div></div>
+      <div class="card"><img src="sdxl_2.png" onclick="openLB(this)" alt="SDXL seed 100"><div class="label">Seed 100</div></div>
+      <div class="card"><img src="sdxl_3.png" onclick="openLB(this)" alt="SDXL seed 101"><div class="label">Seed 101</div></div>
+    </div>
+  </div>
+
+  <p class="footer">Generated on 2026-05-12 | ComfyUI + RTX 4060 8GB</p>
+
+  <div class="lightbox" id="lb" onclick="closeLB()">
+    <img id="lb-img" src="" alt="fullsize">
+  </div>
+
+  <script>
+    function openLB(el) {
+      document.getElementById('lb-img').src = el.src;
+      document.getElementById('lb').classList.add('active');
+    }
+    function closeLB() {
+      document.getElementById('lb').classList.remove('active');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+  </script>
+</body>
+</html>
