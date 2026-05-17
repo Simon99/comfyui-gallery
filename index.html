@@ -294,6 +294,49 @@
     </div>
   </div>
 
+  <hr style="border:none; border-top:1px solid #30363d; max-width:1200px; margin:50px auto 40px;">
+
+  <h1 style="margin-bottom:8px;">Model Comparison</h1>
+  <p class="subtitle">Same prompt, same seed, same settings — which model wins?</p>
+
+  <div class="prompt" style="max-width:1200px;">
+    <strong>Prompt:</strong> "a young woman with long hair sitting at a cafe table, she picks up her coffee cup, takes a sip, and smiles warmly at the camera, natural window light, shallow depth of field, cinematic, photorealistic"<br>
+    <strong>Settings:</strong> 848x480 | 97 frames (4s) | 20 steps | seed 42 | CFG 3.5
+  </div>
+
+  <table>
+    <tr><th>Model</th><th>Type</th><th>Size</th><th>Time</th></tr>
+    <tr><td>LTX 2.3 Q4_K_M</td><td>GGUF</td><td>14 GB</td><td>5.5 min</td></tr>
+    <tr><td><strong>10Eros Q4_K_M</strong></td><td>GGUF</td><td>14 GB</td><td><strong>4.4 min</strong></td></tr>
+    <tr><td>LTX 2.3 FP4ME</td><td>Safetensors</td><td>15 GB</td><td><strong>4.0 min</strong></td></tr>
+  </table>
+
+  <div class="section">
+    <div class="grid">
+      <div class="card">
+        <video src="compare_ltx_q4.mp4" autoplay loop muted playsinline style="width:100%"></video>
+        <div class="label" style="display:flex; justify-content:space-between; align-items:center;">
+          <span>LTX 2.3 Q4_K_M — 5.5 min</span>
+          <a href="compare_ltx_q4.mp4" download style="background:#238636; color:white; padding:6px 14px; border-radius:6px; text-decoration:none; font-size:0.85em;">Download</a>
+        </div>
+      </div>
+      <div class="card">
+        <video src="compare_10eros_q4.mp4" autoplay loop muted playsinline style="width:100%"></video>
+        <div class="label" style="display:flex; justify-content:space-between; align-items:center;">
+          <span>10Eros Q4_K_M — 4.4 min</span>
+          <a href="compare_10eros_q4.mp4" download style="background:#238636; color:white; padding:6px 14px; border-radius:6px; text-decoration:none; font-size:0.85em;">Download</a>
+        </div>
+      </div>
+      <div class="card">
+        <video src="compare_fp4me.mp4" autoplay loop muted playsinline style="width:100%"></video>
+        <div class="label" style="display:flex; justify-content:space-between; align-items:center;">
+          <span>LTX 2.3 FP4ME — 4.0 min</span>
+          <a href="compare_fp4me.mp4" download style="background:#238636; color:white; padding:6px 14px; border-radius:6px; text-decoration:none; font-size:0.85em;">Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- OAKWOOD_START -->
   <hr style="border:none; border-top:1px solid #30363d; max-width:1200px; margin:50px auto 40px;">
 
