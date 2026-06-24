@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComfyUI on M3 Max — 生圖 / 生視頻 作品牆</title>
+<style>
+  :root{ --bg:#0d1117; --card:#161b22; --bd:#30363d; --fg:#e6edf3; --mut:#8b949e; --ac:#58a6ff; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:-apple-system,"PingFang TC","Helvetica Neue",sans-serif;line-height:1.6}
+  header{padding:48px 24px 32px;text-align:center;border-bottom:1px solid var(--bd);
+    background:linear-gradient(180deg,#161b22,#0d1117)}
+  header h1{margin:0 0 8px;font-size:30px} header p{margin:4px 0;color:var(--mut)}
+  .badge{display:inline-block;background:#1f6feb22;color:var(--ac);border:1px solid #1f6feb55;
+    border-radius:20px;padding:3px 12px;font-size:13px;margin:6px 4px 0}
+  main{max-width:1200px;margin:0 auto;padding:24px}
+  section{margin:40px 0}
+  h2{font-size:22px;border-left:4px solid var(--ac);padding-left:12px;margin-bottom:6px}
+  .sub{color:var(--mut);font-size:14px;margin:0 0 18px}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .grid.two{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .grid.three{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.grid.three{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--bd);border-radius:12px;overflow:hidden;
+    transition:transform .15s,border-color .15s}
+  .card:hover{transform:translateY(-3px);border-color:var(--ac)}
+  .card img,.card video{width:100%;display:block;background:#000;aspect-ratio:auto}
+  .meta{padding:10px 14px} .meta .t{font-weight:600;font-size:15px}
+  .meta .d{color:var(--mut);font-size:13px;margin-top:2px}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;
+    background:#21262d;color:var(--mut);margin-right:5px;margin-top:4px}
+  .tag.ac{background:#1f6feb22;color:var(--ac)}
+  .note{background:#161b22;border:1px dashed var(--bd);border-radius:10px;padding:14px 18px;
+    color:var(--mut);font-size:14px}
+  footer{text-align:center;color:var(--mut);font-size:13px;padding:32px;border-top:1px solid var(--bd);margin-top:48px}
+  a{color:var(--ac);text-decoration:none} a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎬 ComfyUI on Apple M3 Max — 作品牆</h1>
+  <p>LTX 2.3 生視頻 · Flux / SDXL / Qwen 生圖 · 全程在 M3 Max 128GB (MPS) 本地生成</p>
+  <div>
+    <span class="badge">M3 Max 128GB</span>
+    <span class="badge">macOS MPS</span>
+    <span class="badge">ComfyUI 0.25</span>
+    <span class="badge">本地離線生成</span>
+  </div>
+</header>
+<main>
+
+  <section>
+    <h2>📐 解析度矩陣 1K / 2K / 4K</h2>
+    <p class="sub">同一張原圖經 4x-UltraSharp 放大。點圖看原尺寸，比較細節銳化。（1K 原生生成 → 4K 放大 → 2K 降採樣）</p>
+    <h3 style="color:#8b949e;font-size:16px">🏞 風景 · Flux Dev</h3>
+    <div class="grid three">
+      <div class="card"><a href="img/matrix_landscape_1K.jpg" target="_blank"><img src="img/matrix_landscape_1K.jpg"></a><div class="meta"><div class="t">1K · 1216×832</div><div class="d">原生生成</div></div></div>
+      <div class="card"><a href="img/matrix_landscape_2K.jpg" target="_blank"><img src="img/matrix_landscape_2K.jpg"></a><div class="meta"><div class="t">2K · 2432×1664</div><div class="d">4K 降採樣</div></div></div>
+      <div class="card"><a href="img/matrix_landscape_4K.jpg" target="_blank"><img src="img/matrix_landscape_4K.jpg"></a><div class="meta"><div class="t">4K · 4864×3328</div><div class="d">UltraSharp 放大</div></div></div>
+    </div>
+    <h3 style="color:#8b949e;font-size:16px;margin-top:24px">🕺 人物姿態 · 表情 · Flux Dev</h3>
+    <div class="grid three">
+      <div class="card"><a href="img/matrix_person_1K.jpg" target="_blank"><img src="img/matrix_person_1K.jpg"></a><div class="meta"><div class="t">1K · 832×1216</div><div class="d">原生生成</div></div></div>
+      <div class="card"><a href="img/matrix_person_2K.jpg" target="_blank"><img src="img/matrix_person_2K.jpg"></a><div class="meta"><div class="t">2K · 1664×2432</div><div class="d">4K 降採樣</div></div></div>
+      <div class="card"><a href="img/matrix_person_4K.jpg" target="_blank"><img src="img/matrix_person_4K.jpg"></a><div class="meta"><div class="t">4K · 3328×4864</div><div class="d">UltraSharp 放大</div></div></div>
+    </div>
+    <h3 style="color:#8b949e;font-size:16px;margin-top:24px">📝 大量文字 · Qwen-Image</h3>
+    <p class="note" id="text-placeholder">⏳ 大量文字（中文）測試需 Qwen-Image GGUF — 模型下載完成後補上 1K/2K/4K。</p>
+  </section>
+
+  <section>
+    <h2>🎞 生視頻 · LTX 2.3</h2>
+    <p class="sub">LTX 2.3 22B GGUF 在 M3 Max (MPS) 本地生成。實測推翻「LTX 在 Mac 上壞掉」的傳言。</p>
+    <div class="grid two">
+      <div class="card"><video src="vid/trilobite_subtitle.mp4" controls preload="metadata"></video><div class="meta"><div class="t">三葉蟲化石形成（字幕版）</div><div class="d">5 段串接 + 中文字幕 + 配音</div><span class="tag ac">Seedance</span><span class="tag">22.5s</span></div></div>
+      <div class="card"><video src="vid/fossil_q8.mp4" controls preload="metadata"></video><div class="meta"><div class="t">化石的形成 — Q8 @ Mac</div><div class="d">9 場景 · 848×480 · 生成 135 分</div><span class="tag ac">Q8 GGUF</span><span class="tag">30.4s</span></div></div>
+      <div class="card"><video src="vid/fossil_q4.mp4" controls preload="metadata"></video><div class="meta"><div class="t">化石的形成 — Q4 @ Mac</div><div class="d">9 場景 · 與 Q8 對照 · 生成 142 分</div><span class="tag ac">Q4 GGUF</span><span class="tag">30.4s</span></div></div>
+    </div>
+    <h3 style="color:#8b949e;font-size:16px;margin-top:24px">⏱ 解析度 vs 速度（2s / 49幀 / 20步）</h3>
+    <div class="grid three">
+      <div class="card"><video src="vid/ltx_480p.mp4" controls preload="metadata"></video><div class="meta"><div class="t">480p</div><div class="d">20.8 s/step · 總 8.4 分</div></div></div>
+      <div class="card"><video src="vid/ltx_720p.mp4" controls preload="metadata"></video><div class="meta"><div class="t">720p</div><div class="d">55.2 s/step · 總 20 分</div></div></div>
+      <div class="card"><video src="vid/ltx_1080p.mp4" controls preload="metadata"></video><div class="meta"><div class="t">1080p</div><div class="d">170 s/step · 總 60 分</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🆚 模型對比</h2>
+    <p class="sub">同一 prompt「秋天森林裡的紅狐」· 1024×1024 · 比較四套生圖模型的風格與速度。</p>
+    <div class="grid">
+      <div class="card"><a href="img/cmp_flux_dev.jpg" target="_blank"><img src="img/cmp_flux_dev.jpg"></a><div class="meta"><div class="t">Flux.1 Dev BF16</div><div class="d">最強畫質 · 229s</div><span class="tag">20 步</span></div></div>
+      <div class="card"><a href="img/cmp_flux_schnell.jpg" target="_blank"><img src="img/cmp_flux_schnell.jpg"></a><div class="meta"><div class="t">Flux.1 Schnell Q8</div><div class="d">快速草稿 · 56s</div><span class="tag">4 步</span></div></div>
+      <div class="card"><a href="img/cmp_juggernaut.jpg" target="_blank"><img src="img/cmp_juggernaut.jpg"></a><div class="meta"><div class="t">Juggernaut XL v10</div><div class="d">寫實派 · 83s</div><span class="tag">SDXL 30 步</span></div></div>
+      <div class="card"><a href="img/cmp_dreamshaper.jpg" target="_blank"><img src="img/cmp_dreamshaper.jpg"></a><div class="meta"><div class="t">DreamShaper XL Turbo</div><div class="d">最快 · 37s</div><span class="tag">SDXL 7 步</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎨 類型展示</h2>
+    <p class="sub">不同題材 × 最適模型。</p>
+    <div class="grid">
+      <div class="card"><a href="img/type_portrait_juggernaut.jpg" target="_blank"><img src="img/type_portrait_juggernaut.jpg"></a><div class="meta"><div class="t">人像 · Juggernaut XL</div><div class="d">寫實膚質</div></div></div>
+      <div class="card"><a href="img/type_portrait_flux.jpg" target="_blank"><img src="img/type_portrait_flux.jpg"></a><div class="meta"><div class="t">人像 · Flux Dev</div><div class="d">對比組</div></div></div>
+      <div class="card"><a href="img/type_landscape.jpg" target="_blank"><img src="img/type_landscape.jpg"></a><div class="meta"><div class="t">風景 · Flux Dev</div></div></div>
+      <div class="card"><a href="img/type_product.jpg" target="_blank"><img src="img/type_product.jpg"></a><div class="meta"><div class="t">產品 · Flux Dev</div></div></div>
+      <div class="card"><a href="img/type_anime.jpg" target="_blank"><img src="img/type_anime.jpg"></a><div class="meta"><div class="t">動漫插畫 · DreamShaper</div></div></div>
+      <div class="card"><a href="img/type_cinematic.jpg" target="_blank"><img src="img/type_cinematic.jpg"></a><div class="meta"><div class="t">電影感 · Flux Dev</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🔍 4K 放大細節示範</h2>
+    <p class="sub">陽光楓葉 · 4x-UltraSharp。點圖看原尺寸比較葉脈與光束邊緣。</p>
+    <div class="grid two">
+      <div class="card"><a href="img/maple_base.jpg" target="_blank"><img src="img/maple_base.jpg"></a><div class="meta"><div class="t">原圖 1216×832</div><div class="d">Flux Dev 生成</div></div></div>
+      <div class="card"><a href="img/maple_4k.jpg" target="_blank"><img src="img/maple_4k.jpg"></a><div class="meta"><div class="t">放大 4864×3328</div><div class="d">4x-UltraSharp</div></div></div>
+    </div>
+  </section>
+
+</main>
+<footer>
+  在 Apple M3 Max 128GB 本地生成 · ComfyUI + LTX 2.3 / Flux / SDXL / Qwen-Image<br>
+  <a href="https://github.com/Simon99/comfyui-video-setup">github.com/Simon99/comfyui-video-setup</a>
+</footer>
+</body>
+</html>
